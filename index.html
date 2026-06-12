@@ -505,13 +505,30 @@
   <button id="lb-next">›</button>
 </div>
 
-<!-- PLAYER -->
-<div id="player">
-  <div id="music-label">🎵 Seu Astral — Jorge & Mateus</div>
+layer">
+  <div id="music-label">🎵 Lendas e Mistérios</div>
+
   <button id="music-btn">♪</button>
-  <iframe id="yt-frame" src="" allow="autoplay" title="bg-music"></iframe>
+
+  <audio id="bgMusic" loop>
+    <source src="música.mp3" type="audio/mpeg">
+  </audio>
 </div>
 
+<script>
+const musicBtn = document.getElementById("music-btn");
+const bgMusic = document.getElementById("bgMusic");
+
+musicBtn.addEventListener("click", () => {
+    if (bgMusic.paused) {
+        bgMusic.play();
+        musicBtn.innerHTML = "❚❚";
+    } else {
+        bgMusic.pause();
+        musicBtn.innerHTML = "♪";
+    }
+});
+</script>
 <!-- ① HERO -->
 <section id="hero">
   <div id="hero-bg"></div>
