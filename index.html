@@ -510,25 +510,10 @@
 
   <button id="music-btn">♪</button>
 
-  <audio id="bgMusic" loop>
-    <source src="música.mp3" type="audio/mp3">
+  <audio id="bgMusic" preload="auto" loop>
+    <source src="musica.mp3" type="audio/mpeg">
   </audio>
 </div>
-
-<script>
-const musicBtn = document.getElementById("music-btn");
-const bgMusic = document.getElementById("bgMusic");
-
-musicBtn.addEventListener("click", () => {
-    if (bgMusic.paused) {
-        bgMusic.play();
-        musicBtn.innerHTML = "❚❚";
-    } else {
-        bgMusic.pause();
-        musicBtn.innerHTML = "♪";
-    }
-});
-</script>
 <!-- ① HERO -->
 <section id="hero">
   <div id="hero-bg"></div>
@@ -682,22 +667,7 @@ const PHRASES = [
 ];
 
 // ── OVERLAY + MÚSICA ──
-const frame = document.getElementById('yt-frame');
-const mBtn  = document.getElementById('music-btn');
-let   mOn   = false;
-
-function startExp() {
-  const ov = document.getElementById('start-overlay');
-  ov.classList.add('hide');
-  setTimeout(() => ov.remove(), 1000);
-  playMusic();
-}
-function playMusic() {
-  frame.src = `https://www.youtube.com/embed/${YT_ID}?autoplay=1&loop=1&playlist=${YT_ID}&controls=0&mute=0`;
-  mBtn.textContent = '⏸'; mOn = true;
-}
-function toggleMusic() {
-  if (!mOn) { playMusic(); }
+yMusic(); }
   else { frame.src = ''; mBtn.textContent = '♪'; mOn = false; }
 }
 mBtn.addEventListener('click', toggleMusic);
@@ -790,6 +760,19 @@ const obs = new IntersectionObserver(entries => {
   const el = document.getElementById(id); if (el) obs.observe(el);
 });
 document.querySelectorAll('.ph-card, .tl-item').forEach(el => obs.observe(el));
+
+  const musicBtn = document.getElementById('music-btn');
+const bgMusic = document.getElementById('bgMusic');
+
+musicBtn.addEventListener('click', () => {
+  if (bgMusic.paused) {
+    bgMusic.play();
+    musicBtn.textContent = '⏸';
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = '♪';
+  }
+});
 </script>
 </body>
 </html>
